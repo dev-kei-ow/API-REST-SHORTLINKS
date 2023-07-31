@@ -1,10 +1,7 @@
 import { Link } from '../models/Link.js';
 
 export const redirectLink = async (req, res) => {
-	//---
 	try {
-		//--
-
 		//el /:id viaja como paramas y se pasa a req.params
 		const { nanoLink } = req.params;
 		const link = await Link.findOne({ nanoLink });
@@ -13,7 +10,6 @@ export const redirectLink = async (req, res) => {
 
 		return res.redirect(link.longLink);
 	} catch (err) {
-		//--
 		console.log(err);
 
 		if (err.kind === 'ObjectId') {

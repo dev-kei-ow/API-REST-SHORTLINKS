@@ -2,10 +2,7 @@ import jwt from 'jsonwebtoken';
 import { tokenVerificationErrors } from '../utils/tokenManager.js';
 
 export const requireToken = (req, res, next) => {
-	//---
-
 	try {
-		//--
 		let token = req.headers?.authorization;
 
 		if (!token) throw new Error('No Bearer');
@@ -19,8 +16,6 @@ export const requireToken = (req, res, next) => {
 
 		next();
 	} catch (err) {
-		//--
-
 		return res.status(401).send({ error: tokenVerificationErrors[err.message] });
 	}
 };

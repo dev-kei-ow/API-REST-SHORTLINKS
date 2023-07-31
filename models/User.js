@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 
 const userSchema = new mongoose.Schema({
-	//---
 	email: {
 		type: String,
 		required: true,
@@ -20,7 +19,6 @@ const userSchema = new mongoose.Schema({
 
 //Antes de guardarlo en la bd va entrar aki
 userSchema.pre('save', async function (next) {
-	//---
 	//Hace referencia a todo el userSchema
 	const user = this;
 
@@ -28,20 +26,16 @@ userSchema.pre('save', async function (next) {
 	if (!user.isModified('password')) return next();
 
 	try {
-		//---
 		const salt = await bcrypt.genSalt(10);
 		user.password = await bcrypt.hash(user.password, salt);
 		next();
 	} catch (err) {
-		//---
 		console.log(err);
 		throw new Error('Fallo el hash de contraseña');
 	}
 });
 
 userSchema.methods.comparePassword = async function (clientPassword) {
-	//---
-
 	return await bcrypt.compare(clientPassword, this.password);
 };
 

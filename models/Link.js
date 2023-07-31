@@ -3,8 +3,6 @@ import mongoose from 'mongoose';
 // const { Schema, model } = mongoose;
 
 const linkSchema = new mongoose.Schema({
-	//---
-
 	longLink: {
 		type: String,
 		required: true,

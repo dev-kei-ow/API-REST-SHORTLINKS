@@ -2,10 +2,7 @@ import { tokenVerificationErrors } from '../utils/tokenManager.js';
 import jwt from 'jsonwebtoken';
 
 export const requireRefreshToken = (req, res, next) => {
-	//---
-
 	try {
-		//--
 		//Leer la cookie del usuario
 		const cookieTokenRefresh = req.cookies.refreshToken;
 
@@ -18,7 +15,6 @@ export const requireRefreshToken = (req, res, next) => {
 
 		next();
 	} catch (err) {
-		//--
 		console.log(err);
 
 		res.status(401).json({ error: tokenVerificationErrors[err.message] });
